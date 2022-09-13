@@ -14,8 +14,7 @@ app.set('view engine', 'html');
 
 
 app.get("/", (req, res) => {
-    // res.send("This is the home page")
-    //include a link to the /ceos page from here
+
     res.render("home", {
         locals: {
             title: "Ceo Welcome Page"
@@ -24,7 +23,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/ceos", (req, res) => {
-    //return list of Apple cos from db.js file 
+
     res.render("ceo-list", {
         locals: {
             title: "Ceo List",
@@ -36,8 +35,6 @@ app.get("/ceos", (req, res) => {
 })
 
 app.get("/ceos/:slug", (req, res) => {
-    //individual CEO route , /ceos/:slug
-    //create req.params for each :slug
     const {slug} = req.params;
     const ceo = db.find(c => c.slug === slug);
     if (ceo) {
@@ -53,18 +50,6 @@ app.get("/ceos/:slug", (req, res) => {
     }
 })
 
- // const {slug} = req.params;
-    // let name =[];
-    // let year = [];
-    // const ceo = db.forEach(c => {
-    //     if(c.slug === slug){
-    //         name += ceo.name
-    //         year += ceo.year      
-    //     } else {
-    //         res.status(404).send(`No Ceo with ${slug}`)
-    //     } 
-    //     res.render('ceo-details', {name, year})
-    // })});
 
 // For invalid routes
 app.get('*', (req, res) => {
